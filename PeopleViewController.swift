@@ -14,41 +14,58 @@ class PeopleViewController: UITableViewController {
     var people = [String]()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
-        // prepare request information and session
+        // pepare request information
         let url = NSURL(string: "http://swapi.co/api/people/")
         let session = URLSession.shared
         
+        // call each page of 'people' URL recursively
+        self.makePeopleRequests(url: url, session: session)
+    }
+    
+    func makePeopleRequests(url: NSURL?, session: URLSession){
         // retrieve data from url and handle with 'completionHandler' function enclosure
         let task = session.dataTask(with: url! as URL, completionHandler: {
-            // callback has three arguments
             data, response, error in
             do {
-                // is there a result? Continue if we can cast response to dictionary type
+                // Continue if we can cast response to dictionary type
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
                     
-                    // cast results key to array for iteration
-                    if let results = jsonResult["results"] as? NSArray {
-                        for person in results {
-                            // cast to dictionary for data extraction
-                            let personDict = person as! NSDictionary
-                            self.people.append(personDict["name"]! as! String)
-                        }
+                    // helper function defined below -- takes response and
+                    // appends people names to the people array
+                    self.parsePeople(response: jsonResult)
+                    
+                    // this print statement shows each page url before request
+                    print("What's next? \(jsonResult["next"])")
+                    
+                    // if there is a url string at the 'next' key of our results page
+                    // set url for next page and recurse with new url
+                    if let nextPage = jsonResult["next"] as? String {
+                        let url = NSURL(string: nextPage)
+                        self.makePeopleRequests(url: url, session: session)
                     }
+                    
                 }
-                // async -- if we loaded the data outside of the do-catch statement
-                // it would attempt to load before we had populated the 'people' array
+                // Reload data inside asynchronous function to prevent loading blank data
                 self.tableView.reloadData()
             } catch {
-                print(error)
+                print("Something went wrong")
             }
         })
-        
+        // execute request task at each stage of recursion
         task.resume()
     }
-
+    
+    // parse people casts results to array for iteration
+    func parsePeople(response: NSDictionary){
+        if let results = response["results"] as? NSArray {
+            for person in results {
+                let personDict = person as! NSDictionary
+                self.people.append(personDict["name"]! as! String)
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,50 +88,5 @@ class PeopleViewController: UITableViewController {
         cell.textLabel?.text = people[indexPath.row]
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
