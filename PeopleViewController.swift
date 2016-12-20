@@ -48,7 +48,9 @@ class PeopleViewController: UITableViewController {
                     
                 }
                 // Reload data inside asynchronous function to prevent loading blank data
-                self.tableView.reloadData()
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
             } catch {
                 print("Something went wrong")
             }

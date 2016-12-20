@@ -39,7 +39,9 @@ class FilmViewController: UITableViewController {
                 }
                 // async -- if we loaded the data outside of the do-catch statement
                 // it would attempt to load before we had populated the 'people' array
-                self.tableView.reloadData()
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
             } catch {
                 print(error)
             }
