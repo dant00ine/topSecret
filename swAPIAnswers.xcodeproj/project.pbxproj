@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		C0248A0E1E08DBF80018362B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A0D1E08DBF80018362B /* AppDelegate.swift */; };
-		C0248A101E08DBF80018362B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A0F1E08DBF80018362B /* ViewController.swift */; };
 		C0248A131E08DBF80018362B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0248A111E08DBF80018362B /* Main.storyboard */; };
 		C0248A161E08DBF80018362B /* swAPIAnswers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0248A141E08DBF80018362B /* swAPIAnswers.xcdatamodeld */; };
 		C0248A181E08DBF90018362B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0248A171E08DBF90018362B /* Assets.xcassets */; };
 		C0248A1B1E08DBF90018362B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0248A191E08DBF90018362B /* LaunchScreen.storyboard */; };
+		C0248A231E08DEC90018362B /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A221E08DEC90018362B /* PeopleViewController.swift */; };
+		C0248A251E08DEE10018362B /* FilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A241E08DEE10018362B /* FilmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0248A0A1E08DBF80018362B /* swAPIAnswers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swAPIAnswers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0248A0D1E08DBF80018362B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C0248A0F1E08DBF80018362B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C0248A121E08DBF80018362B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0248A151E08DBF80018362B /* swAPIAnswers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = swAPIAnswers.xcdatamodel; sourceTree = "<group>"; };
 		C0248A171E08DBF90018362B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0248A1A1E08DBF90018362B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0248A1C1E08DBF90018362B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0248A221E08DEC90018362B /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleViewController.swift; path = ../PeopleViewController.swift; sourceTree = "<group>"; };
+		C0248A241E08DEE10018362B /* FilmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +58,9 @@
 		C0248A0C1E08DBF80018362B /* swAPIAnswers */ = {
 			isa = PBXGroup;
 			children = (
+				C0248A241E08DEE10018362B /* FilmViewController.swift */,
+				C0248A221E08DEC90018362B /* PeopleViewController.swift */,
 				C0248A0D1E08DBF80018362B /* AppDelegate.swift */,
-				C0248A0F1E08DBF80018362B /* ViewController.swift */,
 				C0248A111E08DBF80018362B /* Main.storyboard */,
 				C0248A171E08DBF90018362B /* Assets.xcassets */,
 				C0248A191E08DBF90018362B /* LaunchScreen.storyboard */,
@@ -139,9 +142,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0248A101E08DBF80018362B /* ViewController.swift in Sources */,
 				C0248A0E1E08DBF80018362B /* AppDelegate.swift in Sources */,
 				C0248A161E08DBF80018362B /* swAPIAnswers.xcdatamodeld in Sources */,
+				C0248A251E08DEE10018362B /* FilmViewController.swift in Sources */,
+				C0248A231E08DEC90018362B /* PeopleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
