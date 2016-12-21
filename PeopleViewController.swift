@@ -17,46 +17,37 @@ class PeopleViewController: UITableViewController {
         super.viewDidLoad()
         
         // pepare request information
-        let url = NSURL(string: "http://swapi.co/api/people/")
+        var url = URL(string: "http://swapi.co/api/people/")
         let session = URLSession.shared
         
-        // call each page of 'people' URL recursively
-        self.makePeopleRequests(url: url, session: session)
-    }
-    
-    func makePeopleRequests(url: NSURL?, session: URLSession){
-        // retrieve data from url and handle with 'completionHandler' function enclosure
-        let task = session.dataTask(with: url! as URL, completionHandler: {
-            data, response, error in
-            do {
-                // Continue if we can cast response to dictionary type
-                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                    
-                    // helper function defined below -- takes response and
-                    // appends people names to the people array
-                    self.parsePeople(response: jsonResult)
-                    
-                    // this print statement shows each page url before request
-                    print("What's next? \(jsonResult["next"])")
-                    
-                    // if there is a url string at the 'next' key of our results page
-                    // set url for next page and recurse with new url
-                    if let nextPage = jsonResult["next"] as? String {
-                        let url = NSURL(string: nextPage)
-                        self.makePeopleRequests(url: url, session: session)
+        let myGroup = DispatchGroup()
+        
+        for i in 0...8{
+            let task = session.dataTask(with:url!, completionHandler: {
+                data, response, error in
+                do {
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
+                        self.parsePeople(response: jsonResult)
+                        
+                        let pageNumber = String(i)
+                        url = URL(string: "http://swapi.co/api/people/?page="+pageNumber)
+                        print(url ?? "no url")
+                        
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
                     }
-                    
+                } catch {
+                    print(error)
                 }
-                // Reload data inside asynchronous function to prevent loading blank data
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
-            } catch {
-                print("Something went wrong")
-            }
+            })
+            myGroup.enter()
+            task.resume()
+            myGroup.leave()
+        }
+        myGroup.notify(queue: DispatchQueue.main, execute: {
+            print("Finished all requests")
         })
-        // execute request task at each stage of recursion
-        task.resume()
     }
     
     // parse people casts results to array for iteration
