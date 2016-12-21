@@ -20,18 +20,17 @@ class PeopleViewController: UITableViewController {
         var url = URL(string: "http://swapi.co/api/people/")
         let session = URLSession.shared
         
-        let myGroup = DispatchGroup()
+//        let myGroup = DispatchGroup()
         
-        for i in 0...8{
+//        myGroup.enter()
+        for i in 1...9{
+            let pageNumber = String(i)
+            url = URL(string: "http://swapi.co/api/people/?page="+pageNumber)
             let task = session.dataTask(with:url!, completionHandler: {
                 data, response, error in
                 do {
                     if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
                         self.parsePeople(response: jsonResult)
-                        
-                        let pageNumber = String(i)
-                        url = URL(string: "http://swapi.co/api/people/?page="+pageNumber)
-                        print(url ?? "no url")
                         
                         DispatchQueue.main.async(execute: {
                             self.tableView.reloadData()
@@ -41,13 +40,18 @@ class PeopleViewController: UITableViewController {
                     print(error)
                 }
             })
-            myGroup.enter()
             task.resume()
-            myGroup.leave()
         }
-        myGroup.notify(queue: DispatchQueue.main, execute: {
+//        myGroup.leave()
+//        myGroup.wait()
+        
+//        how can I make this based off the finishing of the DispatchQueue.main process ??
+        let timeout = DispatchTime(uptimeNanoseconds: 10000000000)
+        DispatchQueue.main.asyncAfter(deadline: timeout, execute: {
             print("Finished all requests")
         })
+        
+        
     }
     
     // parse people casts results to array for iteration
