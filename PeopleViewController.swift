@@ -46,7 +46,7 @@ class PeopleViewController: UITableViewController {
 //        myGroup.wait()
         
 //        how can I make this based off the finishing of the DispatchQueue.main process ??
-        let timeout = DispatchTime(uptimeNanoseconds: 10000000000)
+        let timeout = DispatchTime(uptimeNanoseconds: 5000000000000)
         DispatchQueue.main.asyncAfter(deadline: timeout, execute: {
             print("Finished all requests")
         })
