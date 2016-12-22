@@ -20,7 +20,7 @@ class StarWarsModel {
         task.resume()
     }
     static func getAllFilms(completionHandler:@escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-        let url = URL(string: "http://swapi.co/api/people/")
+        let url = URL(string: "http://swapi.co/api/films/")
         
         let session = URLSession.shared
         
