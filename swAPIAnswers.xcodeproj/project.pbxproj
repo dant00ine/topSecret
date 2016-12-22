@@ -14,6 +14,7 @@
 		C0248A1B1E08DBF90018362B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0248A191E08DBF90018362B /* LaunchScreen.storyboard */; };
 		C0248A231E08DEC90018362B /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A221E08DEC90018362B /* PeopleViewController.swift */; };
 		C0248A271E08E2DB0018362B /* FilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A261E08E2DB0018362B /* FilmViewController.swift */; };
+		C06249BB1E0B3985008AEEF4 /* StarWarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06249BA1E0B3985008AEEF4 /* StarWarsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C0248A1C1E08DBF90018362B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0248A221E08DEC90018362B /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleViewController.swift; path = ../PeopleViewController.swift; sourceTree = "<group>"; };
 		C0248A261E08E2DB0018362B /* FilmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmViewController.swift; sourceTree = "<group>"; };
+		C06249BA1E0B3985008AEEF4 /* StarWarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarWarsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				C0248A221E08DEC90018362B /* PeopleViewController.swift */,
 				C0248A261E08E2DB0018362B /* FilmViewController.swift */,
+				C06249BA1E0B3985008AEEF4 /* StarWarsModel.swift */,
 				C0248A0D1E08DBF80018362B /* AppDelegate.swift */,
 				C0248A111E08DBF80018362B /* Main.storyboard */,
 				C0248A171E08DBF90018362B /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			files = (
 				C0248A0E1E08DBF80018362B /* AppDelegate.swift in Sources */,
 				C0248A161E08DBF80018362B /* swAPIAnswers.xcdatamodeld in Sources */,
+				C06249BB1E0B3985008AEEF4 /* StarWarsModel.swift in Sources */,
 				C0248A271E08E2DB0018362B /* FilmViewController.swift in Sources */,
 				C0248A231E08DEC90018362B /* PeopleViewController.swift in Sources */,
 			);
@@ -305,6 +309,7 @@
 				C0248A211E08DBF90018362B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

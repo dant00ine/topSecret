@@ -17,36 +17,25 @@ class PeopleViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        // prepare request information and session
-        let url = NSURL(string: "http://swapi.co/api/people/")
-        let session = URLSession.shared
-        
-        // retrieve data from url and handle with 'completionHandler' function enclosure
-        let task = session.dataTask(with: url! as URL, completionHandler: {
-            // callback has three arguments
+        StarWarsModel.getAllPeople(completionHandler: {
             data, response, error in
             do {
-                // is there a result? Continue if we can cast response to dictionary type
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                    
-                    // cast results key to array for iteration
                     if let results = jsonResult["results"] as? NSArray {
                         for person in results {
-                            // cast to dictionary for data extraction
                             let personDict = person as! NSDictionary
                             self.people.append(personDict["name"]! as! String)
                         }
                     }
                 }
-                // async -- if we loaded the data outside of the do-catch statement
-                // it would attempt to load before we had populated the 'people' array
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
             } catch {
                 print(error)
             }
         })
-        
-        task.resume()
     }
     
     

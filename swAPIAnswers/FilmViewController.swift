@@ -16,13 +16,7 @@ class FilmViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // prepare request information and session
-        let url = NSURL(string: "http://swapi.co/api/films")
-        let session = URLSession.shared
-        
-        // retrieve data from url and handle with 'completionHandler' function enclosure
-        let task = session.dataTask(with: url! as URL, completionHandler: {
-            // anonymous function callback has three arguments
+        StarWarsModel.getAllFilms(completionHandler: {
             data, response, error in
             do {
                 // is there a result? Continue if we can cast response to dictionary type
@@ -39,13 +33,15 @@ class FilmViewController: UITableViewController {
                 }
                 // async -- if we loaded the data outside of the do-catch statement
                 // it would attempt to load before we had populated the 'people' array
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             } catch {
                 print(error)
             }
+
         })
         
-        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
