@@ -11,7 +11,9 @@ import UIKit
 class FilmViewController: UITableViewController {
     
     // data array for storing tableView data -- see cellForRowAt function
-    var films: [String] = []
+    var films: [NSDictionary] = []
+    
+    var filmSelected: NSDictionary!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class FilmViewController: UITableViewController {
                         for film in results {
                             // cast to dictionary for data extraction
                             let filmDict = film as! NSMutableDictionary
-                            self.films.append(filmDict["title"] as! String)
+                            self.films.append(filmDict)
                         }
                     }
                 }
@@ -60,11 +62,22 @@ class FilmViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return films.count
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.filmSelected = films[indexPath.row]
+        performSegue(withIdentifier: "filmDetails", sender: UITableViewCell.self)
+        // how do I grab a controller from this controller
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailsController = segue.destination as? FilmDetailsViewController
+        detailsController?.film = self.filmSelected
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath)
 
-        cell.textLabel?.text = films[indexPath.row]
+        cell.textLabel?.text = films[indexPath.row]["title"] as? String
 
         return cell
     }

@@ -11,7 +11,9 @@ import UIKit
 class PeopleViewController: UITableViewController {
     
     // our tableView data -- see cellForRowAt function
-    var people = [String]()
+    var people = [NSDictionary]()
+    
+    var selectedRow: IndexPath?
     
     override func viewDidLoad() {
         
@@ -24,7 +26,7 @@ class PeopleViewController: UITableViewController {
                     if let results = jsonResult["results"] as? NSArray {
                         for person in results {
                             let personDict = person as! NSDictionary
-                            self.people.append(personDict["name"]! as! String)
+                            self.people.append(personDict)
                         }
                     }
                 }
@@ -56,10 +58,22 @@ class PeopleViewController: UITableViewController {
         return people.count
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedRow = indexPath
+        performSegue(withIdentifier: "peopleDetails", sender: UITableViewCell.self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(sender ?? "no sender")
+        let person = people[(self.selectedRow?.row)!]
+        let destinationController = segue.destination as? DetailsViewController
+        destinationController?.person = person
+    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath)
-        cell.textLabel?.text = people[indexPath.row]
+        cell.textLabel?.text = people[indexPath.row]["name"] as? String
         return cell
     }
 

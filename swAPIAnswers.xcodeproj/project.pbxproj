@@ -15,6 +15,8 @@
 		C0248A231E08DEC90018362B /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A221E08DEC90018362B /* PeopleViewController.swift */; };
 		C0248A271E08E2DB0018362B /* FilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0248A261E08E2DB0018362B /* FilmViewController.swift */; };
 		C06249BB1E0B3985008AEEF4 /* StarWarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06249BA1E0B3985008AEEF4 /* StarWarsModel.swift */; };
+		C06249BD1E0B56B6008AEEF4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06249BC1E0B56B6008AEEF4 /* DetailsViewController.swift */; };
+		C0D673F91E0C359D00755BB7 /* FilmDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D673F81E0C359D00755BB7 /* FilmDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		C0248A221E08DEC90018362B /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleViewController.swift; path = ../PeopleViewController.swift; sourceTree = "<group>"; };
 		C0248A261E08E2DB0018362B /* FilmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmViewController.swift; sourceTree = "<group>"; };
 		C06249BA1E0B3985008AEEF4 /* StarWarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarWarsModel.swift; sourceTree = "<group>"; };
+		C06249BC1E0B56B6008AEEF4 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		C0D673F81E0C359D00755BB7 /* FilmDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +64,12 @@
 		C0248A0C1E08DBF80018362B /* swAPIAnswers */ = {
 			isa = PBXGroup;
 			children = (
+				C0248A0D1E08DBF80018362B /* AppDelegate.swift */,
+				C06249BA1E0B3985008AEEF4 /* StarWarsModel.swift */,
 				C0248A221E08DEC90018362B /* PeopleViewController.swift */,
 				C0248A261E08E2DB0018362B /* FilmViewController.swift */,
-				C06249BA1E0B3985008AEEF4 /* StarWarsModel.swift */,
-				C0248A0D1E08DBF80018362B /* AppDelegate.swift */,
+				C06249BC1E0B56B6008AEEF4 /* DetailsViewController.swift */,
+				C0D673F81E0C359D00755BB7 /* FilmDetailsViewController.swift */,
 				C0248A111E08DBF80018362B /* Main.storyboard */,
 				C0248A171E08DBF90018362B /* Assets.xcassets */,
 				C0248A191E08DBF90018362B /* LaunchScreen.storyboard */,
@@ -147,9 +153,11 @@
 			files = (
 				C0248A0E1E08DBF80018362B /* AppDelegate.swift in Sources */,
 				C0248A161E08DBF80018362B /* swAPIAnswers.xcdatamodeld in Sources */,
+				C0D673F91E0C359D00755BB7 /* FilmDetailsViewController.swift in Sources */,
 				C06249BB1E0B3985008AEEF4 /* StarWarsModel.swift in Sources */,
 				C0248A271E08E2DB0018362B /* FilmViewController.swift in Sources */,
 				C0248A231E08DEC90018362B /* PeopleViewController.swift in Sources */,
+				C06249BD1E0B56B6008AEEF4 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
